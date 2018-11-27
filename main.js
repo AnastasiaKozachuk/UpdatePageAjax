@@ -1,39 +1,3 @@
-function postItem() {
-    $.ajax({
-        type: "POST",
-        url: "/saveBook",
-        timeout: 2000,
-        data: {
-            author: $("#author").val(),
-            country: $("#country").val(),
-            imageLink: $("#imageLink").val(),
-            language: $("#language").val(),
-            link: $("#link").val(),
-            pages: $("#pages").val(),
-            title: $("#title").val(),
-            year: $("#year").val()
-        },
-        success: [
-            function (data) {
-                console.log('Success!')
-            }
-        ],
-        complete: [
-            function (data) {
-               fillTable();
-            }
-        ],
-        error: [function (jqXHR, textStatus, err) {
-            console.log('text status ' + textStatus + ', err ' + err)
-        }]
-    });
-}
-
-
-$("#button").click(function () {
-    postItem();
-});
-
 function filterJson(data) {
 
     var i = data.length - 1;
@@ -57,16 +21,21 @@ function fillTableWithAjax() {
         ],
         complete: [
             function (data) {
-                location.reload();
 
-                /*var jsonData = [];
+                $("#table").html("");
+                var jsonData = [];
 
                 for(var i in data.responseJSON){
                     jsonData.push(data.responseJSON[i]);
                 }
                 var filteredJson = filterJson(jsonData);
 
-                buildHtmlTable(filteredJson);*/
+                buildHtmlTable(filteredJson);
+
+                setTimeout(function () {
+                   fillTableWithAjax();
+                }, 500);
+
             }
         ],
         error: [function (jqXHR, textStatus, err) {
@@ -74,13 +43,6 @@ function fillTableWithAjax() {
         }]
     });
 
-}
-
-function fillTable(){
-    $.get("http://localhost:8888/findAll", function (data) {
-        var filteredJson = filterJson(data);
-        buildHtmlTable(filteredJson);
-    });
 }
 
 function buildHtmlTable(myList) {
@@ -115,10 +77,3 @@ function addAllColumnHeaders(myList, selector) {
 
     return columnSet;
 }
-
-
-$(function () {
-
-    fillTable();
-
-})

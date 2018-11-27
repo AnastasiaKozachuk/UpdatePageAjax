@@ -35,7 +35,7 @@ var Recept = mongoose.model('Recept',schema);
 server.get('/findAll', function(req, res){
     Recept.find(function (err, allRecepts) {
         if(err){
-            res.send("No Recepts in DB");
+            res.send("No Books in DB");
         }else{
             res.send(allRecepts);
         }

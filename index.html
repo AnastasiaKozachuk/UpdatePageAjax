@@ -3,27 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-
-        #table{
-            margin-top: 30px;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            padding: 7px;
-        }
-    </style>
 </head>
 <body>
 
 <h1><strong>You can add new Book</strong></h1>
 <br/>
 
-<form >
+<form  method="POST" action="/saveBook" >
     <input type="text" name="author" placeholder="Author" id="author" required>
     <input type="text" name="country" placeholder="Country" id="country" required>
     <input type="text" name="imageLink" placeholder="Image link" id="imageLink">
@@ -32,10 +18,8 @@
     <input type="text" name="pages" placeholder="Pages" id="pages" required>
     <input type="text" name="title" placeholder="Title" id="title" required>
     <input type="text" name="year" placeholder="Year" id="year" required>
-    <button  id="button" type="button">Send</button>
+    <button  id="button" type="submit">Send</button>
 </form>
-
-<div id="table"></div>
 
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script   src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"   integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="   crossorigin="anonymous"></script>
